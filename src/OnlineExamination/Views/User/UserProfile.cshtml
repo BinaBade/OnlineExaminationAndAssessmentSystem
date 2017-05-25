@@ -1,0 +1,177 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{Layout = "~/Views/Shared/UserPanel.cshtml";}
+
+
+@{
+    ViewData["Title"] = "Exam";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="~/js/ExamJS/UserProfileScript.js"></script>
+<script src="~/js/ExamJS/json2.min.js"></script>
+<style>
+    .userprofile {
+        color: black;
+        font-family: Elephant;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="content">
+                    <div>
+                        <span id="userid" class="userprofile" hidden></span>
+                    </div>
+                    <div>
+                        <span id="userfullname" class="userprofile"></span>
+                    </div>
+                    <div>
+                        <span id="username" class="userprofile"></span>
+                    </div>
+                    <div>
+                        <span id="useremail" class="userprofile"></span>
+                    </div>
+                    <div>
+                        <span id="usergender" class="userprofile"></span>
+                    </div>
+                    <div>
+                        <span id="useryear" class="userprofile"></span>
+                    </div>
+                    <div>
+                        <span id="userprogram" class="userprofile"></span>
+                    </div>
+                    <div>
+                        <button type="button" id="btneditprofile" class="btn btn-info btn-fill" data-target="#edituserprofile" data-toggle="modal">Edit Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="content">
+                        <div class="row-fluid">
+                            <h4>Previous Exams</h4>
+                            <div class="table-active table-bordered">
+                                <table id="tblpreviousexams" class="table-active table-bordered"></table>
+                            </div>
+                        </div>
+   
+                        <div class="modal fade" id="edituserprofile" style="display:none">
+                            <!-- Modal content-->
+                            <div class="modal-dialog" style="background-color:cadetblue">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Edit Profile Details</h4>
+                                </div>
+                                <form>
+                                    <div class="modal-body" style="background-color:gray">
+                                        <div class="row-fluid">
+                                            <label class="control-label">Full Name</label>
+                                            <input class="form-control" type="text" id="txtfullname" placeholder="Full Name" name="FullName" required />
+
+                                        </div>
+                                        <div class="row-fluid">
+                                            <label class="control-label">UserName</label>
+                                            <input class="form-control" type="text" id="txtusernameedit" placeholder="UserName" name="UserName" required />
+
+                                        </div>
+                                        <div class="row-fluid">
+                                            <label class="control-label">Email</label>
+                                            <input class="form-control" type="text" id="txtemail" placeholder="Email" name="Email" required />
+
+                                        </div>
+                                        <div>
+                                            <p>
+                                                <select id="StudentYear" class="form-control" name="Year">
+                                                    <option value="0">Select Year</option>
+                                                    <option value="1">1st Year</option>
+                                                    <option value="2">2nd Year</option>
+                                                    <option value="3">3rd Year</option>
+
+
+                                                </select>
+                                                <span id="validexamyear" style="color:red"></span>
+
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p>
+                                                <div class="form-group">
+                                                    <select id="Programme" class="form-control" name="Programme">
+                                                        <option>Select Programme</option>
+                                                        <option value="BSC Computing">BSC Computing</option>
+                                                        <option value="BSC Networking">BSC Networking</option>
+                                                        <option value="BSC Multimedia">BSC Multimedia</option>
+                                                    </select>
+                                                    <span id="validprogramme" style="color:red"></span>
+                                                </div>
+                                            </p>
+                                        </div>
+                                        <div class="row-fluid">
+                                            <label class="control-label">Gender</label>
+                                            <div class="row-fluid" id="radiodiv">
+                                                <label><input class="radio-inline" type="radio" name="Genderedit" id="radiomale" value="Male" />Male</label>
+                                                <label><input class="radio-inline" type="radio" name="Genderedit" id="radiofemale" value="Female" />Female</label>
+                                            </div>
+                                        </div>
+                                        <div class="row-fluid">
+
+                                            <label class="control-label">Password</label>
+                                            <input class="form-control" type="password" id="txtpasswordedit" placeholder="Password" name="Password" required />
+                                        </div>
+                                        <div class="row-fluid">
+
+                                            <label class="control-label">Confirm Password</label>
+                                            <input class="form-control" type="password" id="txtconfirmpassword" placeholder="Confirm Password" required name="ConfirmPassword" />
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div><span id="spanerror" style="color:red"></span></div>
+
+                                    <div class="form-actions">
+                                        <button type="button" id="btnUpdateUser" style="background-color:forestgreen;color:white" class="btn btn-primary">Update</button>
+                                        <button type="button" class="btn btn-danger" style="background-color:red;color:white" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                </form>
+
+
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+                        <script>
+                            $(function () {
+                                $(this).feedback({
+
+                                    SucessMsg: '',
+                                    ServiceRootPath: 'http://localhost:49613/'
+
+
+                                });
+                            });
+                        </script>

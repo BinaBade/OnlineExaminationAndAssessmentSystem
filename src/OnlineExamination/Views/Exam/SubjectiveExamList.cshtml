@@ -1,0 +1,119 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{Layout = "~/Views/Shared/AdminPanel.cshtml";}
+
+@{
+    ViewData["Title"] = "Subject";
+}
+
+
+@*<link href="~/css/bootstrap.css" rel="stylesheet" />*@
+<link href="~/js/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/js/jquery-ui.min.css" rel="stylesheet" />
+@*<script src="~/js/jquery-3.1.1.min.js"></script>*@
+<script src="~/js/DataTable/jquery.dataTables.min.js"></script>
+<script src="~/js/ExamJS/SubjectiveExamList.js"></script>
+@*<script src="~/js/bootstrap-datepicker.js"></script>*@
+<script src="~/js/jquery-ui.min.js"></script>
+@*<script src="~/js/bootstrap.js"></script>*@
+<script src="~/js/ExamJS/json2.min.js"></script>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Exam List</h2>
+
+        <table id="tblExamList" class="table-striped">
+            <thead>
+                <tr>
+                    <th>S.N.</th>
+                    <th>Exam</th>
+                    <th>Total Questions</th>
+                    <th>Duration</th>
+                    <th>Exam Date</th>
+                    <th>Year</th>
+                    <th>Programme</th>
+                    <th>Type</th>
+                    <th>Is Active</th>
+                    <th>Finished</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="editexammodel" style="display:none">
+    <!-- Modal content-->
+    <div class="modal-dialog" style="background-color:cadetblue">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Exam</h4>
+        </div>
+        <form>
+            <div class="modal-body" style="background-color:gray">
+                <input type="text" id="examidforupdate" hidden />
+
+                <div class="form-group">
+                    <label>Exam Name:</label>
+                    <input type="text" id="editExamName">
+                </div>
+                <div class="form-group">
+                    <label>Duration</label>
+                    <input type="text" id="editDuration">
+                </div>
+                <div class="form-group">
+                    <label>Schedule Exam</label>
+                    <input type="text" id="examdateedit" placeholder="mm/dd/yyyy" class="row-fluid">
+                </div>
+                <p>
+                    <select id="StudentYear" class="form-control-lg" name="Year">
+                        <option>Select Year</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+
+
+                    </select>
+                    <span id="validexamyear" style="color:red"></span>
+
+                </p>
+
+                <p>
+                    <div class="form-group">
+                        <select id="Programme" name="Programme">
+                            <option>Select Programme</option>
+                            <option value="BSC Computing">BSC Computing</option>
+                            <option value="BSC Networking">BSC Networking</option>
+                            <option value="BSC Multimedia">BSC Multimedia</option>
+                        </select>
+                        <span id="validprogramme" style="color:red"></span>
+                    </div>
+                </p>
+
+                <div class="form-actions">
+                    <button type="button" id="btnUpdateExam" style="background-color:forestgreen;color:white" class="btn btn-primary">Update Exam</button>
+                    <button type="button" class="btn btn-danger" style="background-color:red;color:white" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
+</div>
+<script>
+
+    $(function () {
+        $(this).feedback({
+
+            SucessMsg: '',
+            ServiceRootPath: 'http://localhost:49613/'
+
+
+        });
+    });
+</script>

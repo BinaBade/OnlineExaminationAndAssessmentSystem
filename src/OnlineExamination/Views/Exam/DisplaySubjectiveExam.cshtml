@@ -1,0 +1,88 @@
+﻿
+@{Layout = "~/Views/Shared/UserPanel.cshtml";}
+
+
+@*<link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/js/jquery-3.1.1.min.js"></script>*@
+<script src="~/js/ExamJS/DisplaySubjectiveExam.js"></script>
+@*<script src="~/js/bootstrap.min.js"></script>*@
+<script src="~/js/ExamJS/json2.min.js"></script>
+
+
+
+<style>
+    .ansdiv {
+        display: block;
+        background-color: cornflowerblue;
+        cursor: pointer;
+        padding: 20px;
+    }
+
+    .space {
+        height: 15px;
+    }
+</style>
+
+    @using (Html.BeginForm())
+    {
+        <div class="container-fluid" id="gobackdiv">
+            <div>
+                <button type="button" id="btngoback" class="btn btn-info btn-fill">Back to Exam List</button>
+            </div>
+        </div>
+
+        <div>
+            <span id="spanexamid" hidden></span>
+        </div>
+        <div style="padding-top:10px;padding-left:250px;display:none" class="col-lg-9" id="answerdiv">
+
+        </div>
+    }
+    @using (Html.BeginForm())
+    {
+        <div class="container">
+
+            <div class="content" style="background-color:gainsboro">
+                <div class="container-fluid">
+                    <div class="row" id="ExamDivList">
+                       
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="content">
+                                    <div id="main_container" class="span12">
+
+                                        <div id="SubExam" class="span6">
+                                            <h3>Subjective Exams</h3>
+                                            <div id="SubExamlistDiv" class="span6">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+
+               
+
+
+            </div>
+        </div>
+
+
+
+    }
+
+    <script>
+        $(function () {
+            $(this).feedback({
+
+                SucessMsg: '',
+                ServiceRootPath: 'http://localhost:49613/'
+
+
+            });
+        });
+    </script>

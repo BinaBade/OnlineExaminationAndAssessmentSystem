@@ -1,0 +1,49 @@
+﻿
+@model IEnumerable<LogicLayer.ModelEntities.UserModel>
+
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<link href="~/css/logintemplate.css" rel="stylesheet" />
+
+
+
+
+    
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    <body>
+        <center>
+            <div class="toplogin">
+                <h1 class="logintext">Login</h1>
+            </div>
+            <div class="login">
+                <fourm class="logincontainer">
+                    <p><input type="text" id="txtusername" placeholder="UserName" name="UserName" required></p>
+                    <p><input type="password" id="txtpassword" placeholder="Password" name="Password" required></p>
+                </fourm>
+                <button type="submit" id="btnSave" class="loginbutton">Log In</button>
+                <br />
+                <br />
+                <br />
+                <div class="btnRegister">
+                    <a href="~/User/UserRegistration">Do you have an account? Sign Up</a>
+                </div>
+            </div>
+        </center>
+
+        @if (ViewData["Messege"] != null)
+                {
+            <div style="background:red; font:bolder; color: wheat; font-family:'Global User Interface'; font-size:x-large; align-content:center; justify-content:center; text-align:center">
+                @ViewData["Messege"].ToString()
+            </div>
+        }
+
+        
+
+    </body>
+
+}
+

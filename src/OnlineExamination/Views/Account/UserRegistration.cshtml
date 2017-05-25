@@ -1,0 +1,81 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<LogicLayer.ModelEntities.UserModel>
+
+@{Layout = "~/Views/Shared/AdminLayout.cshtml";}
+@{
+    ViewData["Title"] = "User Registration";
+}
+
+
+<link href="~/css/bootstrap.css" rel="stylesheet" />
+<script src="~/js/jquery-3.1.1.min.js"></script>
+<script src="~/js/bootstrap.js"></script>
+
+
+
+
+@using (Html.BeginForm("UserRegistration", "User", FormMethod.Post))
+{
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">User Registration</h4>
+            </div>
+            
+                <div class="modal-body" style="background-color:gainsboro">
+                    <div class="row-fluid">
+                        <label class="control-label">UserName</label>
+                        <input class="form-control" type="text" id="txtusername" placeholder="UserName" name="UserName" />
+
+                    </div>
+                    <div class="row-fluid">
+                        <label class="control-label">Email</label>
+                        <input class="form-control" type="text" id="txtemail" placeholder="Email" name="Email" />
+
+                    </div>
+                    <div class="row-fluid">
+                        <label class="control-label">Gender</label>
+                        <label><input class="radio-inline" type="radio" name="Gender" id="radiomale" value="Male" />Male</label>
+                        <label><input class="radio-inline" type="radio" name="Gender" id="radiofemale" value="Female" />Female</label>
+                   </div>
+                    <div class="row-fluid">
+
+                        <label class="control-label">Password</label>
+                        <input class="form-control" type="password" id="txtpassword" placeholder="Password" name="Password" />
+                    </div>
+                       <div class="row-fluid">
+
+                           <label class="control-label">Confirm Password</label>
+                           <input class="form-control" type="password" id="txtconfirmpassword" placeholder="Confirm Password" name="ConfirmPassword" />
+                       </div>
+
+
+
+                </div>
+
+                @if (ViewData["Messege"] != null)
+                {
+                    <div style="background:red; font:bolder; color: wheat; font-family:'Global User Interface'; font-size:x-large; align-content:center; justify-content:center; text-align:center">
+                        @ViewData["Messege"].ToString()
+                    </div>
+                }
+
+                <div class="form-actions">
+                    <button type="submit" id="btnSave" class="btn btn-primary">Sign Up</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+           
+        </div>
+
+    </div>
+
+
+
+        }

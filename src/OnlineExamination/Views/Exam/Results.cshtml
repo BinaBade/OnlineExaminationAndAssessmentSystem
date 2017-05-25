@@ -1,0 +1,97 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{Layout = "~/Views/Shared/UserPanel.cshtml";}
+
+
+@{
+    ViewData["Title"] = "Notice";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+@*<script src="~/js/jquery-3.1.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>*@
+<script src="~/js/ExamJS/Result.js"></script>
+<script src="~/js/ExamJS/json2.min.js"></script>
+
+<div class="row">
+    <div class="çol-md-12">
+        <div class="card">
+            <div class="content">
+                <form id="result">
+                   
+                    <div><span id="spanerror" style="color:red"></span></div>
+
+                    <div class="form-group">
+                        <label class="control-label">UserName</label>
+                        <div>
+                            <input class="form-control" type="text" id="txtUserName" placeholder="User Name" />
+                        </div>
+                        <span id="validusername" style="color:red"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Exam Type</label>
+                        <div>
+                            <select id="examtype">
+                                <option value="0">Select Exam Type</option>
+                                <option value="Objective">Objective Exam</option>
+                                <option value="Subjective">Subjective Exam</option>
+                            </select>
+                        </div>
+                        <span id="validexamtype" style="color:red"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Exam Code</label>
+                        <div>
+                            <input class="form-control" type="text" id="txtexamcode" placeholder="Exam Code" />
+                        </div>
+                        <span id="validexamcode" style="color:red"></span>
+
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="btnShowResult" class="btn btn-primary">Show Result</button>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="çol-md-12">
+        <div class="card">
+            <div class="content" id="resultdata">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+                <script>
+                    $(function () {
+                        $(this).feedback({
+
+                            SucessMsg: '',
+                            ServiceRootPath: 'http://localhost:49613/'
+
+
+                        });
+                    });
+                </script>
+
+
+
+
+

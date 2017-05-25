@@ -1,0 +1,264 @@
+﻿
+@{Layout = "~/Views/Shared/AdminPanel.cshtml";}
+
+<link href="~/js/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+@*<link href="~/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/js/jquery-3.1.1.min.js"></script>*@
+<script src="~/js/DataTable/jquery.dataTables.min.js"></script>
+<script src="~/js/ExamJS/UserScript.js"></script>
+@*<script src="~/js/bootstrap.min.js"></script>*@
+<script src="~/js/ExamJS/json2.min.js"></script>
+
+
+
+<body>
+
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" id="btnAddUser" class="btn btn-info btn-fill" data-target="#AddNewUser" data-toggle="modal">ADD New User</button>
+            </div>
+        </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="content">
+                            <h3 align="center">User List</h3>
+
+                            <div class="table-active table-bordered" style="border:outset; color:black">
+                                <table id="tblUserList" class="table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>UserID</th>
+                                            <th>UserName</th>
+                                            <th>Full Name</th>
+                                            <th>Gender</th>
+                                            <th>Email</th>
+                                            <th>Year</th>
+                                            <th>Programme</th>
+                                            <th>Role</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+
+
+                }
+
+                @using (Html.BeginForm())
+                {
+                    <div class="modal fade" id="AddNewUser" style="display:none">
+                        <!-- Modal content-->
+                        <div class="modal-dialog" style="background-color:cadetblue">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">User Registration</h4>
+                            </div>
+                            <form>
+                                <div class="modal-body" style="background-color:gray">
+                                    <div class="row-fluid">
+                                        <label class="control-label">UserName</label>
+                                        <input class="form-control" type="text" id="txtusername" placeholder="UserName" name="UserName" required />
+
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label class="control-label">Full Name</label>
+                                        <input class="form-control" type="text" id="txtfullname" placeholder="Full Name"/>
+
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label class="control-label">Email</label>
+                                        <input class="form-control" type="text" id="txtemail" placeholder="Email" name="Email" required />
+
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label class="control-label">Gender</label>
+                                        <div class="row-fluid" id="radiodiv">
+                                            <label><input class="radio-inline" type="radio" name="Gender" id="radiomale" value="Male" checked />Male</label>
+                                            <label><input class="radio-inline" type="radio" name="Gender" id="radiofemale" value="Female" />Female</label>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label class="control-label">Year</label>
+                                        <p>
+                                            <div class="form-group">
+                                                <select id="StudentYear" class="form-control" name="Year">
+                                                    <option disabled>Select Year</option>
+                                                    <option value="1">1st Year</option>
+                                                    <option value="2">2nd Year</option>
+                                                    <option value="3">3rd Year</option>
+                                                </select>
+                                                <span id="validyear" style="color:red"></span>
+                                            </div>
+                                        </p>
+
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label class="control-label">Programme</label>
+                                        <p>
+                                            <div class="form-group">
+                                                <select id="Programme" name="Programme">
+                                                    <option disabled>Select Programme</option>
+                                                    <option value="BSC Computing">BSC Computing</option>
+                                                    <option value="BSC Networking">BSC Networking</option>
+                                                    <option value="BSC Multimedia">BSC Multimedia</option>
+                                                </select>
+                                                <span id="validprogramme" style="color:red"></span>
+                                            </div>
+                                        </p>
+
+                                    </div>
+                                    <div class="row-fluid">
+
+                                        <label class="control-label">Role</label>
+                                        <select id="dropdownroles"></select>
+                                    </div>
+
+                                    <div class="row-fluid">
+
+                                        <label class="control-label">Password</label>
+                                        <input class="form-control" type="password" id="txtpassword" placeholder="Password" name="Password" required />
+                                    </div>
+                                    <div class="row-fluid">
+
+                                        <label class="control-label">Confirm Password</label>
+                                        <input class="form-control" type="password" id="txtconfirmpassword" placeholder="Confirm Password" required name="ConfirmPassword" />
+                                    </div>
+
+
+
+                                </div>
+
+                                <div><span id="spanerror" style="color:red"></span></div>
+
+                                <div class="form-actions">
+                                    <button type="button" id="btnSave" style="background-color:forestgreen;color:white" class="btn btn-primary">Add User</button>
+                                    <button type="button" class="btn btn-danger" style="background-color:red;color:white" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+
+                }
+
+                @using (Html.BeginForm())
+                {
+                    <div class="modal fade" id="EditUSer" style="display:none">
+                        <!-- Modal content-->
+                        <div class="modal-dialog" style="background-color:lightslategray">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">User Edit</h4>
+                            </div>
+                            <form>
+                                <div class="modal-body" style="background-color:grey">
+                                    <input type="text" id="hiddenuserid" />
+                                    <div class="row-fluid">
+                                        <label class="control-label">UserName</label>
+                                        <input class="form-control" type="text" id="txtusernameedit" placeholder="UserName" name="UserName" required />
+
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label class="control-label">Full Name</label>
+                                        <input class="form-control" type="text" id="txtfullnameedit" placeholder="Full Name" name="FullName" required />
+
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label class="control-label">Email</label>
+                                        <input class="form-control" type="text" id="txtemailedit" placeholder="Email" name="Email" required />
+
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label class="control-label">Year</label>
+                                        <p>
+                                            <div class="form-group">
+                                                <select id="StudentYearedit" class="form-control" name="Year">
+                                                    <option disabled>Select Year</option>
+                                                    <option value="1">1st Year</option>
+                                                    <option value="2">2nd Year</option>
+                                                    <option value="3">3rd Year</option>
+                                                </select>
+                                                <span id="validyear" style="color:red"></span>
+                                            </div>
+                                        </p>
+
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label class="control-label">Programme</label>
+                                        <p>
+                                            <div class="form-group">
+                                                <select id="ProgrammeEdit" name="Programme">
+                                                    <option disabled>Select Programme</option>
+                                                    <option value="BSC Computing">BSC Computing</option>
+                                                    <option value="BSC Networking">BSC Networking</option>
+                                                    <option value="BSC Multimedia">BSC Multimedia</option>
+                                                </select>
+                                                <span id="validprogramme" style="color:red"></span>
+                                            </div>
+                                        </p>
+
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label class="control-label">Gender</label>
+                                        <div class="row-fluid" id="radiodivedit">
+                                            <label><input class="radio-inline" type="radio" name="Genderedit" id="radiomaleedit" value="Male" checked />Male</label>
+                                            <label><input class="radio-inline" type="radio" name="Genderedit" id="radiofemaleedit" value="Female" />Female</label>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+
+                                        <label class="control-label">Role</label>
+                                        <select id="selecteduserrole"></select>
+                                    </div>
+                                    <div class="row-fluid">
+
+                                        <label class="control-label">Password</label>
+                                        <input class="form-control" type="password" id="txtpasswordedit" placeholder="Password" name="Password" required />
+                                    </div>
+
+
+
+
+                                </div>
+
+                                <div><span id="spanerror" style="color:red"></span></div>
+
+                                <div class="form-actions">
+                                    <button type="button" id="btnUpdateUser" class="btn btn-primary" style="background-color:forestgreen;color:white">Update User</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="background-color:red;color:white">Close</button>
+                                </div>
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+
+                }
+                <script>
+                    $(function () {
+                        $(this).feedback({
+
+                            SucessMsg: '',
+                            ServiceRootPath: 'http://localhost:49613/'
+
+
+                        });
+                    });
+                </script>
+</body>

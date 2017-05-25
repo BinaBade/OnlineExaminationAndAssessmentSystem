@@ -1,0 +1,102 @@
+﻿body {
+    background-image: url('../images/exam2.jpg');
+    background-size: cover;
+}
+
+.Register {
+  background: #fff;
+  width: 500px;
+  height: 600px;
+  
+}
+
+.topRegister {
+  background: #fc7700;
+  width: 500px;
+  height: 100px;
+  text-align: center;
+}
+
+.registertext {
+  color: white;
+  font-family: Sans-serif;
+  padding: 32px;
+  font-size: 40px;
+  text-transform: uppercase;
+}
+
+.Registerbutton {
+  font-family: Sans-serif;
+  font-size: 20px;
+  color: white;
+  background: #fc7700;
+  border: none;
+  padding: 20px 50px;
+}
+.btnCancel{
+     font-family: Sans-serif;
+  font-size: 20px;
+  color: white;
+  background: #fc7700;
+  border: none;
+  padding: 20px 50px;
+}
+
+#btngotosignmeup{
+  font-family: Sans-serif;
+  font-size: 20px;
+  color: white;
+  background: #0099FF;
+  border: none;
+  padding: 20px 120px;
+}
+
+.Registerbutton:hover {
+  background: #888;
+}
+.btnCancel:hover {
+  background: #888;
+}
+
+.Registercontainer {
+  padding: 20px;
+}
+
+.Register p {
+  padding: 0px;
+}
+
+.Register input,
+.Register select {
+  box-sizing: border-box;
+  display: block;
+  width: 80%;
+  border-width: 1px;
+  /*border-style: solid;*/
+  padding: 10px;
+  outline: 0;
+  font-family: Sans-serif;
+  font-size: 0.95em;
+}
+
+.Register input[type="text"],
+.Register input[type="email"],
+.Register input[type="password"],
+.Register select {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+}
+
+/* Text fields' focus effect */
+/*.Register input[type="text"]:focus,
+.Register input[type="email"]:focus,
+.Register input[type="password"]:focus {
+  border-color: #888;
+}*/
+
+.Register option {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+}

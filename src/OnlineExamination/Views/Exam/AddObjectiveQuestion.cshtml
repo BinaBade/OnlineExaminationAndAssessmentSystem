@@ -1,0 +1,102 @@
+﻿
+@{Layout = "~/Views/Shared/AdminPanel.cshtml";}
+
+
+@*<link href="~/css/bootstrap.min.css" rel="stylesheet" />*@
+@*<script src="~/js/jquery-3.1.1.min.js"></script>*@
+<script src="~/js/ExamJS/QuestionsAndSubjectsScript.js"></script>
+@*<script src="~/js/bootstrap.min.js"></script>*@
+<script src="~/js/ExamJS/json2.min.js"></script>
+
+
+
+<body>
+        @using (Html.BeginForm())
+        {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="content">
+                        <form id="ObjQuestion">
+                            <p>
+                                <div class="form-group">
+                                    <select id="StudentYear" class="form-control" name="Year">
+                                        <option value="0">Select Year</option>
+                                        <option value="1">1st Year</option>
+                                        <option value="2">2nd Year</option>
+                                        <option value="3">3rd Year</option>
+                                    </select>
+                                    <span id="validyear" style="color:red"></span>
+                                </div>
+                            </p>
+                            <p>
+                                <div class="form-group">
+                                    <select id="Programme" class="form-control" name="Programme">
+                                        <option value="0">Select Programme</option>
+                                        <option value="BSC Computing">BSC Computing</option>
+                                        <option value="BSC Networking">BSC Networking</option>
+                                        <option value="BSC Multimedia">BSC Multimedia</option>
+                                    </select>
+                                </div>
+                            </p>
+                            <div>
+                            <p>
+                                <div class="form-group">
+                                    <label for="pwd">Choose Subject:</label>
+                                    <div class="">
+                                        <select id="SubjectID" class="form-control" name="SubjectID"></select>
+                                    </div>
+                                </div>
+                            </p> <br />
+
+                            <div class="form-group">
+                                <label>Add Question:</label>
+                                <textarea class="form-control" rows="5" id="txtQuestion" name="ObjectiveQue" width="80%"></textarea>
+                                <br />
+                            </div>
+                                <div class="">
+                                    <span id="spanerror" style="color:red"></span>
+                                </div>
+                                <label>Correct Answer:</label>
+                                <div class="">
+                                    <label class="form-control"><input type="radio" id="Status1" name="Status"><input type="text" id="Answer1" placeholder="Option 1" style="width:900px; height:30px; padding-left:5px;"></label>
+                                </div>
+                                <div class="">
+                                    <label class="form-control"><input type="radio" id="Status2" name="Status"><input type="text" id="Answer2" placeholder="Option 2" style="width:900px; height:30px; padding-left:5px;"></label>
+                                </div>
+                                <div class="">
+                                    <label class="form-control"><input type="radio" id="Status3" name="Status"><input type="text" id="Answer3" placeholder="Option 3" style="width:900px; height:30px; padding-left:5px;"></label>
+                                </div>
+                                <div class="">
+                                    <label class="form-control"><input type="radio" id="Status4" name="Status"><input type="text" id="Answer4" placeholder="Option 4" style="width:900px; height:30px; padding-left:5px;"></label>
+                                </div>
+                                <div>
+                                    <span id="spanerror"></span>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" id="btnAddQuestion" class="btn btn-info btn-fill">Add Question</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+
+
+
+                            }
+
+                            <script>
+                                $(function () {
+                                    $(this).feedback({
+
+                                        SucessMsg: '',
+                                        ServiceRootPath: 'http://localhost:49613/'
+
+
+                                    });
+                                });
+                            </script>
+</body>

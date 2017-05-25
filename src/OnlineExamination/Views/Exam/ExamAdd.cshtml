@@ -1,0 +1,185 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{Layout = "~/Views/Shared/AdminPanel.cshtml";}
+
+
+@{
+    ViewData["Title"] = "Exam";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="~/js/jquery-ui.min.css" rel="stylesheet" />
+@*<link href="~/css/bootstrap.min.css" rel="stylesheet" />*@
+
+@*<script src="~/js/jquery-3.1.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>*@
+
+<script src="~/js/ExamJS/ExamScript.js"></script>
+<script src="~/js/jquery-ui.min.js"></script>
+<script src="~/js/ExamJS/json2.min.js"></script>
+<style>
+    #tblquestions tr:hover {
+        background-color: antiquewhite;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="content">
+                <form id="examnamediv">
+                    @*<div class="content" style="background-color:gainsboro">*@
+                        <p>
+                            <select id="StudentYear" class="form-control" name="Year">
+                                <option value="0">Select Year</option>
+                                <option value="1">1st Year</option>
+                                <option value="2">2nd Year</option>
+                                <option value="3">3rd Year</option>
+
+
+                            </select>
+                            <span id="validexamyear" style="color:red"></span>
+
+                        </p>
+
+                        <p>
+                            <div class="form-group">
+                                <select id="Programme" class="form-control" name="Programme">
+                                    <option value="0">Select Programme</option>
+                                    <option value="BSC Computing">BSC Computing</option>
+                                    <option value="BSC Networking">BSC Networking</option>
+                                    <option value="BSC Multimedia">BSC Multimedia</option>
+                                </select>
+                                <span id="validprogramme" style="color:red"></span>
+                            </div>
+                        </p>
+                        <p>
+                            <div class="form-group">
+                                <select id="ExamType" class="form-control" name="ExamType">
+                                    <option value="Objective Exam" selected>Objective Exam</option>
+                                    <option value="Mock Test">Mock Test</option>
+                                </select>
+                            </div>
+                        </p>
+                        <div class="form-group">
+                            <label class="control-label">Exam Name:</label>
+                            <div>
+                                <input class="form-control" type="text" id="txtexam" placeholder="Exam Name" />
+                            </div>
+                            <span id="validexamname" style="color:red"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Exam Duration</label>
+                            <div>
+                                <input class="form-control" type="text" id="txtexamtime" placeholder="Duration in Minutes" />
+                            </div>
+                            <span id="validexamtime" style="color:red"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Schedule Exam</label>
+                            <input type="text" class="form-control" id="examdateedit" placeholder="mm/dd/yyyy" @*class="row-fluid"*@>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Make It Active?</label>
+                            <div>
+                                <input type="checkbox" id="chkactive" name="chkactive" />
+                            </div>
+                            <span id="validexamname"></span>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" id="btnAddExamName" class="btn btn-info btn-fill">Create Exam</button>
+
+                        </div>
+                    @*</div>*@
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                @using (Html.BeginForm())
+                {
+                    <div class="container" id="questionsdiv">
+                        <!-- Modal content-->
+
+                        <div class="content" style="background-color:gainsboro">
+                            <div class="form-group">
+                                <label class="control-label">Exam Name:</label>
+                                <div>
+                                    <input class="form-control-lg" type="text" id="examID" />
+
+                                    <Span style="color:black" id="txtexamNameDisplay"></Span>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="form-group">
+                                <label for="pwd">Choose Subject:</label>
+                                <div>
+                                    <select id="SubjectID" class="form-control-lg" name="SubjectID"></select>
+                                </div>
+
+                            </div> <br />
+
+                            <div class="table-active table-bordered">
+
+                                <table id="tblquestions" class="table" border="1"></table>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" id="btnReviewQuestions" data-target="#checkquestions" data-toggle="modal" class="btn btn-primary">Create Exam</button>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+                }
+
+                <div id="checkquestions" class="modal fade" role="dialog" style="display:none">
+                    <div class="modal-dialog">
+                        <div class="row-fluid">
+                            <div class="box paint color_13">
+
+
+                                <div class="content" style="background-color:gainsboro">
+                                    <div class="form-group">
+                                        <label class="control-label">Exam Name:</label>
+                                        <div>
+                                            <span style="color:black" id="spanexamname"></span>
+                                        </div>
+                                    </div>
+                                    <div class="table-active table-bordered">
+
+                                        <table id="tblquestionscheck" class="table" border="1"></table>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="button" id="btnCreateExam" data-target="#checkquestions" data-toggle="modal" class="btn btn-primary">Create Exam</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    $(function () {
+                        $(this).feedback({
+
+                            SucessMsg: '',
+                            ServiceRootPath: 'http://localhost:49613/'
+
+
+                        });
+                    });
+                </script>

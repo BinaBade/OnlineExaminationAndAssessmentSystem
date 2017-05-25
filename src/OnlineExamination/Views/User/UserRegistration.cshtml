@@ -1,0 +1,94 @@
+﻿
+
+@model IEnumerable<LogicLayer.ModelEntities.UserModel>
+
+
+@{
+    ViewData["Title"] = "User Registration";
+}
+
+<link href="~/css/Registration.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+<script src="~/js/jquery-3.1.1.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="~/js/ExamJS/UserRegistration.js"></script>
+<script src="~/js/ExamJS/json2.min.js"></script>
+
+<body>
+    <center>
+        <div class="topRegister">
+            <h1 class="registertext">Register</h1>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="Register" if="registrationdiv">
+                <fourm class="Registercontainer">
+                    <p><input type="text" id="txtfullname" placeholder="Full Name" name="FullName" required></p>
+                    <p><input type="text" id="txtusername" placeholder="UserName" name="UserName" required></p>
+                    <span style="color:darkred" id="spanusername"></span>
+                    <p><input type="text" id="txtemail" placeholder="Email" name="Email" required></p>
+                    <div class="col-md-7" id="radiodiv">
+                        <label><input class="radio-inline" type="radio" name="Gender" id="radiomale" value="Male" checked />Male</label>
+                        <label><input class="radio-inline" type="radio" name="Gender" id="radiofemale" value="Female" />Female</label>
+                    </div>
+                    <p><input type="password" id="txtpassword" placeholder="Password" name="Password" required></p>
+                    <p><input type="password" id="txtconfirmpassword" placeholder="Confirm Password" required name="ConfirmPassword" /></p>
+                    <div><span id="spanerror" style="color:red"></span></div>
+
+                    <p>
+                        <select id="Year" name="Year">
+                            <option value="0">Select Year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+
+
+                        </select>
+                    </p>
+
+                    <p>
+                        <select id="Programme" name="Programme">
+                            <option value="0">Select Programme</option>
+                            <option value="BSC Computing">BSC Computing</option>
+                            <option value="BSC Networking">BSC Networking</option>
+                            <option value="BSC Multimedia">BSC Multimedia</option>
+
+
+                        </select>
+                    </p>
+                    <div><span id="spanerror" style="color:red"></span></div>
+
+
+                </fourm>
+                <button type="button" id="btnSave" class="Registerbutton">Sign Up</button>
+                <a href="~/User/Login"><button type="button" class="btnCancel">Cancel</button></a>
+                <br />
+                <br />
+                <br />
+                <div class="btnRegister">
+                    <a href="~/User/Login">Already Registered??? Sign In</a>
+                </div>
+            </div>
+        }
+    </center>
+
+</body>
+
+
+
+
+<script>
+
+            $(function () {
+                $(this).feedback({
+
+                    SucessMsg: '',
+                    ServiceRootPath: 'http://localhost:49613/'
+
+
+                });
+            });
+
+</script>
